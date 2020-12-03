@@ -1,0 +1,18 @@
+{
+  "name": "@ngscaffolding/dashboard",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^11.0.3",
+    "@angular/core": "^11.0.3",
+    "@angular/elements": "~11.0.3",
+    "angular-gridster2": "^10.1.7",
+    "primeng": "10.0.2",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngscaffolding/models": "^1.0.140",
+    "@ngscaffolding/core": "^1.0.0",
+    "@ngscaffolding/inputbuilder": "^1.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

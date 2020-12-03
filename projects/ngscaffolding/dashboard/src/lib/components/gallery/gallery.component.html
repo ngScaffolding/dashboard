@@ -1,0 +1,23 @@
+<div class="galleryHeader">{{ 'Add Widget' | translate }}</div>
+
+<div *ngFor="let widget of widgets$ | async">
+    <div class="p-grid widgetLine">
+        <div class="p-col-2">
+            <button
+                pButton
+                pRipple
+                type="button"
+                pTooltip="{{ 'Add Widget' | translate }}"
+                tooltipPosition="bottom"
+                (click)="clickWidget(widget.name)"
+                icon="pi pi-plus"
+                class="p-button-rounded p-button-outlined p-mr-2 p-mb-2"
+            ></button>
+        </div>
+
+        <div class="p-col-8 widgetName">{{ widget.name | translate }}</div>
+        <div class="p-col-2">
+            <i [class]="getIconName(widget) +' widget-icons'"></i>
+        </div>
+    </div>
+</div>

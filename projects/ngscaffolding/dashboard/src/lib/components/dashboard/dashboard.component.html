@@ -1,0 +1,100 @@
+<p-sidebar [(visible)]="galleryShown" position="right" [style]="{width:'30em'}">
+    <ngs-gallery [galleryName]="dashboard?.galleryName" (addWidget)="onAddWidget($event)"></ngs-gallery>
+</p-sidebar>
+
+<div *ngIf="dashboard dashContainer">
+    <div styleClass="dashHeader">
+        <div class="headerLine p-grid">
+            <!-- TITLE -->
+            <span
+                class="dashHeader"
+                [class.p-col-3]="dashboard.inputBuilderDefinition && dashboard.inputBuilderDefinition.inputLocation === 'inline'"
+                [class.p-col-8]="!dashboard.inputBuilderDefinition || dashboard.inputBuilderDefinition.inputLocation !== 'inline'"
+            >
+                <ngs-editable-title
+                    [configObject]="dashboard.configuredValues"
+                    [readOnly]="dashboard.readOnly || !showSave"
+                    [title]="dashboard.title"
+                    (titleChanged)="onTitleChanged($event)"
+                >
+                </ngs-editable-title>
+            </span>
+
+            <!-- INLINE INPUTS -->
+            <div
+                class="p-col-5 inlineInputs"
+                *ngIf="dashboard.inputBuilderDefinition && dashboard.inputBuilderDefinition.inputLocation === 'inline'"
+            >
+                <ngs-input-builder
+                    (modelUpdated)="dashInputOkClicked($event)"
+                    [inputBuilderDefinition]="dashboard.inputBuilderDefinition"
+                    [inputModel]="inputModel"
+                >
+                </ngs-input-builder>
+            </div>
+
+            <!-- TOOLBAR -->
+            <span class="text-right p-col-4">
+                <ngs-dashboard-toolbar
+                    [showInput]="showInput"
+                    [showUnlock]="showUnlock"
+                    [showAdd]="showAdd"
+                    [showDelete]="showDelete"
+                    [showSave]="showSave"
+                    [showSaveAs]="showSaveAs"
+                    [showShare]="showShare"
+                    (toolbarClicked)="onToolbarClicked($event)"
+                >
+                </ngs-dashboard-toolbar>
+            </span>
+        </div>
+      </div>
+
+    <div ngsFillHeight>
+        <div style="width: 100%;" ngsFillHeight>
+            <gridster [class]="isLocked ? 'gridsterContainer' : 'gridsterContainer-moving'" [options]="options">
+                <gridster-item [item]="widget" *ngFor="let widget of dashboard.widgets" #loopGridster>
+                    <ngs-widget-container
+                        (widgetEvent)="onWidgetEvent($event, widget)"
+                        (widgetCreated)="componentCreated(widget, $event)"
+                        [widgetDetails]="widget"
+                        [isReadOnly]="dashboard.readOnly"
+                    >
+                    </ngs-widget-container>
+                </gridster-item>
+            </gridster>
+        </div>
+    </div>
+</div>
+
+<!-- Input Details for Dashboard -->
+<ngs-input-builder-popup
+    #dashboardInputPopup
+    [inputBuilderDefinition]="dashboard?.inputBuilderDefinition"
+    [attachMouseClick]="true"
+    [inputModel]="inputModel"
+    (okClicked)="dashInputOkClicked($event)"
+    (cancelCliecked)="dashInputCancelClicked()"
+></ngs-input-builder-popup>
+
+<!-- Input Details for Widget -->
+<ngs-input-builder-popup
+    #actionInputPopup
+    [attachMouseClick]="true"
+    [setWidth]="440"
+    [inputBuilderDefinition]="actionInputDefinition"
+    [inputModel]="actionValues"
+    (okClicked)="actionOkClicked($event)"
+    (cancelCliecked)="actionCancelClicked()"
+></ngs-input-builder-popup>
+
+<!-- Save As Dialog -->
+<p-dialog title="Input Details" [(visible)]="saveShown" [contentStyle]="{ overflow: 'visible' }">
+    <p-header>
+        {{ (isShareDialog ? 'Share' : 'Save As') | translate }}
+    </p-header>
+    <ngs-save-input [isShareDialog]="isShareDialog" (saveMenu)="onSaveMenu($event)"> </ngs-save-input>
+</p-dialog>
+
+<!-- Delete Confirmation -->
+<p-confirmDialog header="{{ 'Delete Confirmation' | translate }}" icon="ui-icon-warning" width="425"></p-confirmDialog>

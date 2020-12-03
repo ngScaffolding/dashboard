@@ -1,0 +1,52 @@
+<div (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" class="widgetContainer">
+    <div class="expand-toolbar">
+        <span [@toolBarShown]="showToolbar">
+            <!-- Add Button -->
+            <button
+                *ngIf="allowInputs"
+                pButton
+                pRipple
+                class="p-button-rounded p-button-info p-button-text p-mr-2 p-mb-2"
+                type="button"
+                icon="pi pi-cog"
+                tooltipPosition="bottom"
+                (click)="buttonClicked('properties')"
+                pTooltip="{{ 'Properties' | translate }}"
+            ></button>
+
+            <button
+                pButton
+                pRipple
+                class="p-button-rounded p-button-secondary p-button-text p-mr-2 p-mb-2"
+                type="button"
+                icon="pi pi-refresh"
+                tooltipPosition="bottom"
+                (click)="buttonClicked('refresh')"
+                pTooltip="{{ 'Refresh' | translate }}"
+            ></button>
+
+            <button
+                *ngIf="allowClose"
+                pButton
+                pRipple
+                class="p-button-rounded p-button-danger p-button-text p-mr-2 p-mb-2"
+                type="button"
+                icon="pi pi-trash"
+                tooltipPosition="bottom"
+                (click)="buttonClicked('remove')"
+                pTooltip="{{ 'Remove' | translate }}"
+            ></button>
+        </span>
+    </div>
+    <div id="widgetContent" style="width: 100%; height: 100%;"></div>
+    <button
+        *ngIf="isLoadingError"
+        pButton
+        pRipple
+        class="p-button-rounded p-button-danger p-button-text p-ml-2 p-mb-2"
+        type="button"
+        icon="pi pi-trash"
+        tooltipPosition="top"
+        pTooltip="{{ 'Error Loading Widget' | translate }}"
+    ></button>
+</div>
