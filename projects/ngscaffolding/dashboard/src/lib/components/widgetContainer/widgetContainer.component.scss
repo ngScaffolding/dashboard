@@ -1,21 +1,24 @@
-.widgetContainer{
+.widgetContainer {
   position: relative;
   height: 100%;
 }
 
-.menuContainer{
-position: relative;
-top: 100px;
+.menuContainer {
+  position: relative;
+  top: 100px;
 }
 
-.expand-toolbar {
-position: absolute;
-right: 10px;
-top: 6px;
-float: right;
-z-index: 99999;
+.expanded-toolbar {
+  position: absolute;
+  right: 10px;
+  top: 6px;
+  float: right;
+  z-index: 99999;
+
+    border-radius: 17px;
+  background: #cccccc;
 }
 
 .mainButton {
-margin-left: 20px;
+  margin-left: 20px;
 }

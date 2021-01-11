@@ -16,35 +16,13 @@ import { ComponentLoaderService } from '@ngscaffolding/core';
             state(
                 'false',
                 style({
-                    width: '0px',
                     opacity: '0',
-                    overflow: 'hidden'
                 })
             ),
             state(
                 'true',
                 style({
-                    width: '*',
-                    opacity: '1'
-                })
-            ),
-            transition('false => true', animate('200ms ease-in')),
-            transition('true => false', animate('200ms ease-out'))
-        ]),
-        trigger('toolBarExpandedState', [
-            state(
-                'false',
-                style({
-                    width: '0px',
-                    opacity: '0',
-                    overflow: 'hidden'
-                })
-            ),
-            state(
-                'true',
-                style({
-                    width: '*',
-                    opacity: '1'
+                    opacity: '0.7'
                 })
             ),
             transition('false => true', animate('200ms ease-in')),
