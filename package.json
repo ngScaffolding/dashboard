@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build --project=@ngscaffolding/dashboard",
     "build:watch": "ng build --project=@ngscaffolding/dashboard --watch",
+    "release": "npm version patch & ng build --project=@ngscaffolding/dashboard --prod",
     "test": "ng test",
     "lint": "ng lint"
   },
